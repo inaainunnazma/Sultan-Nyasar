@@ -1078,7 +1078,7 @@ Zakat rikaz dikeluarkan langsung ketika harta tersebut ditemukan tanpa syarat ni
                     <!-- Identitas -->
                     <div style="flex: 1;">
                         <h4 style="color: var(--emas); font-size: 20px; margin-bottom: 5px;">DR. Ani Nur Aeni, M.Pd.</h4>
-                        <p style="font-size: 18px; font-weight: bold; color: var(--hijau-tua); margin-bottom: 5px;">NIM: 2403225</p>
+                        <p style="font-size: 18px; font-weight: bold; color: var(--hijau-tua); margin-bottom: 5px;">NIP: 197608222005022002</p>
                     </div>
                 </div>
             </div>
