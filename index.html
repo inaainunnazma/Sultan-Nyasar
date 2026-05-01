@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Nyasar - Belajar Zakat Interaktif</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="chatBox"></div>
+
+
+    <!-- OPENING CHAT SECTION -->
+    <div id="opening-section" class="opening-section">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-avatar">👳🏻</div>
+                <div class="chat-header-info">
+                    <h3>Sultan Nyasar</h3>
+                    <p>online</p>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages"></div>
+            
+            <div class="chat-footer">
+                <button id="next-chat-btn" class="next-chat-btn">Lanjut Percakapan →</button>
+                <div class="chat-progress">
+                    <div class="chat-progress-bar" id="chat-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANSISI DRAMATIS -->
+    <div id="transition-section" class="transition-section" style="display: none;">
+        <div class="transition-overlay"></div>
+        <div class="transition-content">
+            <h1 class="transition-title" id="transition-title"></h1>
+            <p class="transition-subtitle" id="transition-subtitle"></p>
+            <div class="transition-glow"></div>
+        </div>
+    </div>
+
+    <!-- MAIN MENU SECTION -->
+    <div id="main-menu-section" class="main-menu-section" style="display: none;">
+        <!-- Header -->
+        <div class="app-header">
+    <div class="header-left">
+        <img src="assets/images/Logo UPI.jpg" alt="UPI" class="logo-upi-header" onerror="this.style.display='none'">
+        <span class="kelas-v">Materi Zakat Kelas V</span>
+    </div>
+    <div class="header-center">
+        <h1 class="app-title">SULTAN NYASAR</h1>
+        <p class="app-subtitle">Simulasi Perhitungan Zakat untuk Anak Sekolah Dasar</p>
+    </div>
+    <div class="header-right">
+        <button class="reset-btn" onclick="resetAllData()" title="Hapus Data" style="background: rgba(255,255,255,0.2); border: 1px solid #ffffff; color: #ffffff; padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 12px;">🗑️ Hapus Data</button>
+    </div>
+</div>
+
+        <!-- Sultan Character -->
+        <div class="sultan-character">
+            <div class="sultan-avatar-large">👳🏻</div>
+            <div class="sultan-speech-bubble">
+                <p id="greeting-message">"Halo! Aku Sultan. Ayo belajar zakat bersama!"</p>
+            </div>
+        </div>
+
+        <!-- MENU GRID (8 MENU) -->
+        <div class="menu-container">
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showPopup('panduan')">
+                    <div class="menu-icon">📋</div>
+                    <h3>Panduan</h3>
+                    <p>Cara menggunakan aplikasi</p>
+                </div>
+
+                <div class="menu-card" onclick="showPopup('materi')">
+                    <div class="menu-icon">🗺️</div>
+                    <h3>Materi</h3>
+                    <p>Jelajahi pembelajaran zakat interaktif</p>
+                </div>
+                
+                <div class="menu-card" onclick="showPopup('kalkulator')">
+                    <div class="menu-icon">🧮</div>
+                    <h3>Kalkulator Zakat</h3>
+                    <p>Hitung 7 jenis zakat</p>
+                </div>
+
+                <div class="menu-card" onclick="showPopup('game')">
+                    <div class="menu-icon">🎮</div>
+                    <h3>Game</h3>
+                    <p>Main sambil belajar zakat</p>
+                </div>
+<!-- POP-UP SUBMENU GAME -->
+<div id="game-submenu-popup" class="popup-overlay" style="display: none; z-index: 3500;">
+    <div class="popup-container" style="width: 90%; max-width: 800px; z-index: 3501;">
+        <div class="popup-header">
+            <h2>🎮 Pilih Permainan</h2>
+            <button class="popup-close" onclick="closeGameSubmenu(true)">✕</button>
+        </div>
+        <div class="popup-content" id="game-submenu-content">
+            <div class="game-submenu-path">
+                <div class="game-submenu-node" data-game="dragdrop">
+                    <div class="game-submenu-icon">🧩</div>
+                    <div class="game-submenu-label">Drag and Drop</div>
+                </div>
+                <div class="game-submenu-node" data-game="truefalse">
+                    <div class="game-submenu-icon">✅❌</div>
+                    <div class="game-submenu-label">True or False</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                <div class="menu-card" onclick="showPopup('qa')">
+                    <div class="menu-icon">❓</div>
+                    <h3>Q&A Zakat</h3>
+                    <p>Konsultasi kasus zakat</p>
+                </div>
+
+                <div class="menu-card" onclick="showPopup('tim')">
+                  <div class="menu-icon">🪄</div>
+                    <h3>Tim Pengembang</h3>
+                    <p>Kenali tim pengembang</p>
+                </div>
+                </div>
+            </div>
+
+    <!-- POP-UP KONTEN -->
+    <div id="popup-overlay" class="popup-overlay" style="display: none;" onclick="closePopup()"></div>
+    
+    <div id="popup-container" class="popup-container" style="display: none;">
+        <div class="popup-header">
+            <h2 id="popup-title"></h2>
+            <button class="popup-close" onclick="closePopup()">✕</button>
+        </div>
+        
+        <div class="popup-content" id="popup-content"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+<!-- ========== SISTEM AUDIO ========== -->
+<!-- Backsound (autoplay nonaktif, biar user yang nyalakan) -->
+<audio id="backsound" loop>
+    <source src="assets/audio/backsound.mp3" type="audio/mp3">
+</audio>
+
+<!-- Tombol kontrol backsound -->
+<div id="audio-control" class="audio-control" onclick="toggleBacksound()">
+    <span id="audio-icon">🔊</span>
+</div>
+<!-- MODAL BIODATA (Login Siswa) -->
+<div id="biodata-modal" class="popup-overlay" style="display: none;">
+    <div class="popup-container" style="max-width: 450px;">
+        <div class="popup-header" style="background: linear-gradient(135deg, var(--hijau-tua), var(--biru-tua));">
+            <h2 style="color: var(--emas);">📝 Login Siswa</h2>
+            <button class="popup-close" onclick="closeBiodataModal()">✕</button>
+        </div>
+        <div class="popup-content" style="text-align: center;">
+            <p style="margin-bottom: 20px; color: var(--hijau-tua); font-weight: 500;">
+                Masukkan data dirimu untuk memulai petualangan belajar zakat!
+            </p>
+            <div class="biodata-form">
+                <div class="form-group">
+                    <label>👤 Nama Lengkap</label>
+                    <input type="text" id="biodata-name" placeholder="Contoh: Sultan Ahmad" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>📚 Kelas</label>
+                    <input type="text" id="biodata-class" placeholder="Contoh: 5A">
+                </div>
+                <div class="form-group">
+                    <label>🔢 Nomor Absen</label>
+                    <input type="text" id="biodata-number" placeholder="Contoh: 01">
+                </div>
+                <button id="save-biodata-btn" class="btn btn-primary" style="width:100%; margin-top: 15px;" onclick="saveBiodata()">
+                    ✨ Mulai ✨
+                </button>
+                <p style="font-size: 12px; color: var(--abu-gelap); margin-top: 15px;">
+                    *Data disimpan di browser kamu.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GAME SECTION -->
+<div id="game-section" class="popup-overlay game-overlay" style="display: none;">
+    <div class="popup-container game-popup">
+        <div class="popup-header">
+            <h2>🎮 Game Sultan Nyasar</h2>
+            <button class="popup-close" onclick="playClickSound(); backToMainMenu();">✕</button>
+        </div>
+        <div class="popup-content">
+            <div class="game-toolbar" style="display: none;">
+                <button class="btn btn-secondary" onclick="playClickSound(); backToMainMenu();">← Kembali</button>
+                <h2>Menu Game Sultan Nyasar</h2>
+                <div id="game-score-display" class="game-score-display">Skor: 0</div>
+            </div>
+            <div id="game-welcome" class="game-welcome">
+        <h3>Selamat datang di Game Interaktif Zakat!</h3>
+        <p>Waktunya bermain sambil belajar. Pilih mode permainan.</p>
+        <div class="menu-grid" style="gap: 18px;">
+            <div class="submenu-card game-option" onclick="playClickSound(); showGameMode('dragdrop')">
+                <div class="submenu-card-icon">🧩</div>
+                <h4>Drag and Drop</h4>
+                <p>5 soal, skor 100</p>
+            </div>
+            <div class="submenu-card game-option" onclick="playClickSound(); showGameMode('truefalse')">
+                <div class="submenu-card-icon">✔️❌</div>
+                <h4>True or False</h4>
+                <p>10 soal, skor 100</p>
+            </div>
+        </div>
+    </div>
+    <div id="game-content" class="game-content"></div>
+    <div id="game-nav" class="game-nav" style="display: none;">
+        <button class="btn btn-secondary" onclick="playClickSound(); gamePrevQuestion()">Previous</button>
+        <button class="btn btn-primary" id="game-next-btn" onclick="playClickSound(); gameNextQuestion()">Next</button>
+    </div>
+        </div>
+    </div>
+</div>
+
+<!-- Suara Klik Menu & Game -->
+<audio id="click-sound">
+    <source src="assets/audio/klik-menu.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Musik Game -->
+<audio id="game-music" loop>
+    <source src="assets/audio/backsound.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
